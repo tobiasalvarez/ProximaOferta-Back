@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +26,11 @@ public class Comprador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@NotNull(message = "Nome obrigatorio!")
 	private String nome;
-	
+	@NotNull(message = "Rua obrigatoria!")
 	private String rua;
-	
+	@NotNull(message = "Bairro obrigatorio!")
 	private String bairro;
 	
 	private int idade;
@@ -36,7 +38,7 @@ public class Comprador {
 	@ManyToOne
 	@JoinColumn(name = "sexo")
 	@JsonIgnoreProperties("compradores")
-	private Sexo sexo;
+	private Sexo genero;
 	
 	@OneToOne
 	@JoinColumn(name = "comanda_id")
