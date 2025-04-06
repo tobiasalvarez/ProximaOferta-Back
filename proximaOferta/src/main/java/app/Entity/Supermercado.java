@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,14 +27,16 @@ public class Supermercado {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull(message = "Nome obrigatorio!!")
+	@NotBlank(message = "Nome obrigatorio!!")
 	private String nome;
 	
-	@NotNull(message = "Rua obrigatoria!!")
+	
 	private String rua;
 	
 	@Email(message = "Email obrigatorio!!")
 	private String email;
+	
+	private boolean cadastroCompleto;
 	
 	@OneToOne
 	@JoinColumn(name = "usuario_id")

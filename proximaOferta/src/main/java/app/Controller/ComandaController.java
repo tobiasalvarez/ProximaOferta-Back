@@ -19,14 +19,14 @@ public class ComandaController {
 	@Autowired
 	private ComandaService comandaService;
 	
-	public ResponseEntity<String> save(@RequestBody Comanda comanda){
+	/*public ResponseEntity<String> save(@RequestBody Comanda comanda){
 		try {
 			String message = this.comandaService.save(comanda);
 			return new ResponseEntity<>(message, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}
+	}    so pra testar */ 
 	
 	public ResponseEntity<String> deleteById(long id){
 		try {

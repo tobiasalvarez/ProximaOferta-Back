@@ -15,8 +15,15 @@ public class SupermercadoService {
 	private SupermercadoRepository supermercadoRepository;
 	
 	public String save(Supermercado supermercado){
-		this.supermercadoRepository.save(supermercado);
-		return "Supermercado Criado!";
+		if (supermercado.getRua() == null) {
+			supermercado.setCadastroCompleto(false);
+			this.supermercadoRepository.save(supermercado);
+			return "Supermercado Criado!";
+		} else {
+			supermercado.setCadastroCompleto(true);
+			this.supermercadoRepository.save(supermercado);
+			return "Supermercado Criado!";
+		}
 	}
 	
 	public String deleteById(long id){

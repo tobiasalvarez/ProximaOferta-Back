@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,11 +27,11 @@ public class Comprador {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@NotNull(message = "Nome obrigatorio!")
+	@NotBlank(message = "Nome obrigatorio!")
 	private String nome;
-	@NotNull(message = "Rua obrigatoria!")
+	@NotBlank(message = "Rua obrigatoria!")
 	private String rua;
-	@NotNull(message = "Bairro obrigatorio!")
+	@NotBlank(message = "Bairro obrigatorio!")
 	private String bairro;
 	
 	private int idade;

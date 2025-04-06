@@ -24,9 +24,9 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@NotNull(message = "Nome obrigatorio!!")
+	@NotBlank(message = "Nome obrigatorio!!")
 	private String nome;
-	@NotNull(message = "Validade obrigatoria!")
+	@NotBlank(message = "Validade obrigatoria!")
 	private String validade;
 	@NotBlank(message = "Preco Original obrigatorio!!")
 	private double precoOriginal;

@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,9 +21,9 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id; 
-	@NotNull(message = "Usuario obrigatorio!!")
+	@NotBlank(message = "Usuario obrigatorio!!")
 	private String usuario;
-	@NotNull(message = "Senha obrigatorio!!")
+	@NotBlank(message = "Senha obrigatorio!!")
 	private String senha;
 
 }

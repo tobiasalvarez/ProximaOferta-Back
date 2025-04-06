@@ -15,8 +15,12 @@ public class ProdutoService {
 	private ProdutoRepository produtoRepository;
 	
 	public String save(Produto produto) {
-		this.produtoRepository.save(produto);
-		return "Produto Criado!!";
+		if (produto.getSupermercado() == null) {
+			throw new RuntimeException("Nao e possivel cadastrar um produto sem um supermercado associado.");
+		} else {
+			this.produtoRepository.save(produto);
+			return "Produto Criado!!";
+		}
 	}
 	
 	public String deleteById(long id) {
