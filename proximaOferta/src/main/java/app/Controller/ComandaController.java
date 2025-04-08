@@ -1,4 +1,4 @@
-package app.Controller;
+/*package app.Controller;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public class ComandaController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
-	}    so pra testar */ 
+	}    so pra testar 
 	
 	public ResponseEntity<String> deleteById(long id){
 		try {
@@ -63,4 +63,4 @@ public class ComandaController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-}
+}*/

@@ -2,26 +2,35 @@ package app.Entity;
 
 import org.springframework.data.annotation.Id;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity
+@Getter
+@Setter
 public class ItemCarrinho {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	
+	@Id
+	@GeneratedValue
+	private long id;
+	
+	private int quantidade;
 
-    @ManyToOne
+
+	@ManyToOne
+	@JoinColumn(name = "produto_id")
     private Produto produto;
-
-    private int quantidade;
-
-    @ManyToOne
+	
+	@ManyToOne
+    @JoinColumn(name = "carrinho_id")
     private Carrinho carrinho;
+    
+    public ItemCarrinho(Produto produto, int quantidade) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
 
-    // Getters e setters
+  
 }
-
-

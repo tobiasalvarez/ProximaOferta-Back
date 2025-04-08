@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import app.Entity.Usuario;
-import app.Service.UsuarioService;
+import app.Entity.Carrinho;
+import app.Service.CarrinhoService;
 
 @RestController
-@RequestMapping("/api/usuario")
-public class UsuarioController {
-
+@RequestMapping("/api/carrinho")
+public class CarrinhoController {
+	
 	@Autowired
-	private UsuarioService usuarioService;
+	private CarrinhoService carrinhoService;
 	
 	@PostMapping("/save")
-	public ResponseEntity<String> save(Usuario usuario){
+	public ResponseEntity<String> save(Carrinho carrinho){
 		try {
-			String message = this.usuarioService.save(usuario);
+			String message = this.carrinhoService.save(carrinho);
 			return new ResponseEntity<>(message, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -34,7 +34,7 @@ public class UsuarioController {
 	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(long id){
 		try {
-			String message = this.usuarioService.deleteById(id);
+			String message = this.carrinhoService.deleteById(id);
 			return new ResponseEntity<>(message, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -42,19 +42,19 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/findById/{id}")
-	public ResponseEntity<Usuario> findById(long id){
+	public ResponseEntity<Carrinho> findById(long id){
 		try {
-			Usuario usuario = this.usuarioService.findById(id);
-			return new ResponseEntity<>(usuario, HttpStatus.BAD_REQUEST);
+			Carrinho carrinho = this.carrinhoService.findById(id);
+			return new ResponseEntity<>(carrinho, HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
 	
 	@GetMapping("/findAll")
-	public ResponseEntity<List<Usuario>> findAll(){
+	public ResponseEntity<List<Carrinho>> findAll(){
 		try {
-			List<Usuario> list = this.usuarioService.findAll();
+			List<Carrinho> list = this.carrinhoService.findAll();
 			return new ResponseEntity<>(list,  HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -62,12 +62,13 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<String> update(Usuario usuario, long id){
+	public ResponseEntity<String> update(Carrinho carrinho, long id){
 		try {
-			String message = this.usuarioService.update(usuario, id);
+			String message = this.carrinhoService.update(carrinho, id);
 			return new ResponseEntity<>(message, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
+
 }

@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +21,7 @@ public class CompradorController {
 	@Autowired
 	private CompradorService compradorService;
 	
+	@PostMapping("/save")
 	public ResponseEntity<String> save(Comprador comprador){
 		try {
 			String message = this.compradorService.save(comprador);
@@ -27,6 +31,7 @@ public class CompradorController {
 		}
 	}
 	
+	@DeleteMapping("/deleById/{id}")
 	public ResponseEntity<String> deleteById(long id){
 		try {
 			String message = this.compradorService.deleteById(id);
@@ -36,6 +41,7 @@ public class CompradorController {
 		}
 	}
 	
+	@GetMapping("/findById/{id}")
 	public ResponseEntity<Comprador> findById(long id){
 		try {
 			Comprador comprador = this.compradorService.findById(id);
@@ -45,6 +51,7 @@ public class CompradorController {
 		}
 	}
 	
+	@GetMapping("/findAll")
 	public ResponseEntity<List<Comprador>> findAll(){
 		try {
 			List<Comprador> list = this.compradorService.findAll();
@@ -54,6 +61,7 @@ public class CompradorController {
 		}
 	}
 	
+	@PostMapping("/update/{id}")
 	public ResponseEntity<String> update(Comprador comprador, long id){
 		try {
 			String message = this.compradorService.update(comprador, id);

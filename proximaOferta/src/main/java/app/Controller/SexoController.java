@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +21,7 @@ public class SexoController {
 	@Autowired
 	private SexoService sexoService;
 	
+	@PostMapping("/save")
 	public ResponseEntity<String> save(Sexo sexo){
 		try {
 			String message = this.sexoService.save(sexo);
@@ -27,6 +31,7 @@ public class SexoController {
 		}
 	}
 	
+	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(long id){
 		try {
 			String message = this.sexoService.deleteById(id);
@@ -36,6 +41,7 @@ public class SexoController {
 		}
 	}
 	
+	@GetMapping("/findById/{id}")
 	public ResponseEntity<Sexo> findById(long id){
 		try {
 			Sexo sexo = this.sexoService.findById(id);
@@ -45,6 +51,7 @@ public class SexoController {
 		}
 	}
 	
+	@GetMapping("/findAll")
 	public ResponseEntity<List<Sexo>> findAll(){
 		try {
 			List<Sexo> list = this.sexoService.findAll();
@@ -54,6 +61,7 @@ public class SexoController {
 		}
 	}
 	
+	@PostMapping("/update/{id}")
 	public ResponseEntity<String> update(Sexo sexo, long id){
 		try {
 			String message = this.sexoService.update(sexo, id);

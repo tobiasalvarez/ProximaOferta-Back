@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +21,7 @@ public class SupermercadoController {
 	@Autowired
 	private SupermercadoService supermercadoService;
 	
+	@PostMapping("/save")
 	public ResponseEntity<String> save(Supermercado supermercado){
 		try {
 			String message = this.supermercadoService.save(supermercado);
@@ -27,6 +31,7 @@ public class SupermercadoController {
 		}
 	}
 	
+	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(long id){
 		try {
 			String message = this.supermercadoService.deleteById(id);
@@ -36,6 +41,7 @@ public class SupermercadoController {
 		}
 	}
 	
+	@GetMapping("/findById/{id}")
 	public ResponseEntity<Supermercado> findById(long id){
 		try {
 			Supermercado supermercado = this.supermercadoService.findById(id);
@@ -44,7 +50,8 @@ public class SupermercadoController {
 			return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
+	@GetMapping("/findAll")
 	public ResponseEntity<List<Supermercado>> findAll(){
 		try {
 			List<Supermercado> list = this.supermercadoService.findAll();
@@ -54,6 +61,7 @@ public class SupermercadoController {
 		}
 	}
 	
+	@PostMapping("/update/{id}")
 	public ResponseEntity<String> update(Supermercado supermercado, long id){
 		try {
 			String message = this.supermercadoService.update(supermercado, id);

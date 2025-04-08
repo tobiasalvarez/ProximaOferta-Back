@@ -1,7 +1,5 @@
-package app.Service;
+/*package app.Service;
 
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Service;
 import app.Entity.Carrinho;
 import app.Entity.Comanda;
 import app.Entity.ItemCarrinho;
-import app.Repository.CarrinhoRepository;
 import app.Repository.ComandaRepository;
 
 @Service
@@ -21,7 +18,7 @@ public class ComandaService {
     private ComandaRepository comandaRepository;
 
     @Autowired
-    private CarrinhoRepository carrinhoRepository;
+    private CarrinhoRepoCarriitory carrinhoRepository;
 
     public Comanda criarComandaDoCarrinho() {
         Carrinho carrinho = carrinhoRepository.findFirstByFinalizadoFalse()
@@ -57,5 +54,6 @@ public class ComandaService {
         this.comandaRepository.save(comanda);
         return "Comanda atualizada";
     }
-}
+}*/
+
 
