@@ -1,4 +1,4 @@
-package app.Repository;
+/*package app.Repository;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import app.Entity.Produto;
 
 public interface ComandaRepository extends JpaRepository<Comanda, Long>{
 	
-	public List<Comanda> findByProdutosIgnoreCaseContaing(String produto);
+	 List<Comanda> findByProdutosIgnoreCaseContaining(String produto);
 	
-	public List<Comanda> findByCompradorNomeIgnoreCaseContaing(String nomeComprador);
+	 List<Comanda> findByCompradorNomeIgnoreCaseContaining(String nomeComprador);
 
-}
+}*/

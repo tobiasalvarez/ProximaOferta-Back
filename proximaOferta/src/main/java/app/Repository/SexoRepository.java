@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import app.Entity.Comprador;
+import app.Entity.Comprador;
 import app.Entity.Sexo;
 
 public interface SexoRepository extends JpaRepository<Sexo, Long>{
 	
-	public List<Sexo> findByGeneroIgnoreCaseContaing(String genero);
+	List<Sexo> findByGeneroContainingIgnoreCase(String genero);
 	
-	public List<Sexo> findByCompradorNomeIgnoreCaseContaing(String nomeComprador);
+	List<Sexo> findByCompradorNomeContainingIgnoreCase(String nome);
+	
+	List<Comprador> findByGenero(Sexo genero);
 
 }

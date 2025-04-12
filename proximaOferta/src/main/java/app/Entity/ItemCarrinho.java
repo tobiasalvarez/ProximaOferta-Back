@@ -1,8 +1,9 @@
 package app.Entity;
 
-import org.springframework.data.annotation.Id;
-
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -10,14 +11,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class ItemCarrinho {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	private int quantidade;
-
 
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
@@ -30,6 +31,10 @@ public class ItemCarrinho {
     public ItemCarrinho(Produto produto, int quantidade) {
         this.produto = produto;
         this.quantidade = quantidade;
+    }
+    
+    public ItemCarrinho() {
+    	
     }
 
   

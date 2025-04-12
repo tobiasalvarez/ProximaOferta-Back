@@ -23,14 +23,14 @@ import lombok.Setter;
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	@NotBlank(message = "Nome obrigatorio!!")
 	private String nome;
 	@NotBlank(message = "Validade obrigatoria!")
 	private String validade;
-	@NotBlank(message = "Preco Original obrigatorio!!")
+	@NotNull(message = "Preco Original obrigatorio!!")
 	private double precoOriginal;
-	@NotBlank(message = "Preco Com Desconto obrigatorio!!")
+	@NotNull(message = "Preco Com Desconto obrigatorio!!")
 	private double precoAtual;
 	
 	@ManyToOne

@@ -8,8 +8,9 @@ import app.Entity.Supermercado;
 
 public interface SupermercadoRepository extends JpaRepository<Supermercado, Long>{
 	
-	public List<Supermercado> findByEmailWithIgnoreCaseContaing(String email);
+	List<Supermercado> findByEmailContainingIgnoreCase(String email);
+
 	
-	public List<Supermercado> findByUsuarioIgnoreCaseConting(String usuario);
+	List<Supermercado> findByUsuarioUsuarioContainingIgnoreCase(String usuario);
 
 }
