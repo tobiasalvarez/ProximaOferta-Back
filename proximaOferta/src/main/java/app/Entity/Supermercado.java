@@ -34,6 +34,7 @@ public class Supermercado {
 	private String rua;
 	
 	@Email(message = "Email obrigatorio!!")
+	@NotBlank(message = "Email Obrigatorio")
 	private String email;
 	
 	private boolean cadastroCompleto;
