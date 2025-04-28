@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Sexo;
@@ -53,5 +54,17 @@ public class SexoController {
 	public ResponseEntity<String> update(@RequestBody Sexo sexo,@PathVariable long id){
 			String message = this.sexoService.update(sexo, id);
 			return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	
+	@GetMapping("/findByGeneroContainingIgnoreCase")
+	public ResponseEntity<List<Sexo>> findByGeneroContainingIgnoreCase(@RequestParam String genero){
+		List<Sexo> lista = this.sexoService.findByGeneroContainingIgnoreCase(genero);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
+	}
+	
+	@GetMapping("/findByCompradorNomeContainingIgnoreCase")
+	public ResponseEntity<List<Sexo>> findByCompradorNomeContainingIgnoreCase(@RequestParam String comprador){
+		List<Sexo> lista = this.sexoService.findByCompradorNomeContainingIgnoreCase(comprador);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 }

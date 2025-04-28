@@ -33,6 +33,5 @@ public class Sexo {
 	
 	@OneToOne
 	@JsonIgnoreProperties("genero")
-	@JoinColumn(name = "comprador_id")
 	private Comprador comprador;
 }

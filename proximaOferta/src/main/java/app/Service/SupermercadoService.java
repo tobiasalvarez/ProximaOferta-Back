@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.Entity.Comprador;
 import app.Entity.Supermercado;
 import app.Repository.SupermercadoRepository;
 
@@ -40,6 +39,16 @@ public class SupermercadoService {
 		supermercado.setId(id);
 		this.supermercadoRepository.save(supermercado);
 		return "Supermercado Atualizado!";
+	}
+	
+	public List<Supermercado> findByEmailContainingIgnoreCase(String email){
+		List<Supermercado> lista = this.supermercadoRepository.findByEmailContainingIgnoreCase(email);
+		return lista;
+	}
+	
+	public List<Supermercado> findByUsuarioUsuarioContainingIgnoreCase(String usuario){
+		List<Supermercado> lista = this.supermercadoRepository.findByUsuarioUsuarioContainingIgnoreCase(usuario);
+		return lista;
 	}
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Supermercado;
@@ -53,5 +54,17 @@ public class SupermercadoController {
 	public ResponseEntity<String> update(@RequestBody Supermercado supermercado,@PathVariable long id){
 			String message = this.supermercadoService.update(supermercado, id);
 			return new ResponseEntity<>(message, HttpStatus.OK);
+	}
+	
+	@GetMapping("/findByEmailContainingIgnoreCase")
+	public ResponseEntity<List<Supermercado>> findByEmailContainingIgnoreCase(@RequestParam String email){
+		List<Supermercado> lista = this.supermercadoService.findByEmailContainingIgnoreCase(email);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
+	}
+	
+	@GetMapping("/findByUsuarioUsuarioContainingIgnoreCase")
+	public ResponseEntity<List<Supermercado>> findByUsuarioUsuarioContainingIgnoreCase(@RequestParam String usuario){
+		List<Supermercado> lista = this.supermercadoService.findByUsuarioUsuarioContainingIgnoreCase(usuario);
+		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 }

@@ -39,4 +39,14 @@ public class SexoService {
 		this.sexoRepository.save(sexo);
 		return "Genero atualizado";
 	}
+	
+	public List<Sexo> findByGeneroContainingIgnoreCase(String genero){
+		List<Sexo> lista = this.sexoRepository.findByGeneroContainingIgnoreCase(genero);
+		return lista;
+	}
+	
+	public List<Sexo> findByCompradorNomeContainingIgnoreCase(String comprador){
+		List<Sexo> lista = this.sexoRepository.findByCompradorNomeContainingIgnoreCase(comprador);
+		return lista;
+	}
 }
