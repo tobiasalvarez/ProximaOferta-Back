@@ -62,9 +62,9 @@ public class SupermercadoController {
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 	
-	@GetMapping("/findByUsuarioContainingIgnoreCase")
-	public ResponseEntity<List<Supermercado>> findByUsuarioContainingIgnoreCase(@RequestParam String usuario){
-		List<Supermercado> lista = this.supermercadoService.findByUsuarioContainingIgnoreCase(usuario);
+	@GetMapping("/findByUsuarioUsuarioContainingIgnoreCase")
+	public ResponseEntity<List<Supermercado>> findByUsuarioUsuarioContainingIgnoreCase(@RequestParam String usuario){
+		List<Supermercado> lista = this.supermercadoService.findByUsuarioUsuarioContainingIgnoreCase(usuario);
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 }

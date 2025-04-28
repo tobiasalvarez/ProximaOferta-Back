@@ -46,8 +46,8 @@ public class SupermercadoService {
 		return lista;
 	}
 	
-	public List<Supermercado> findByUsuarioContainingIgnoreCase(String usuario){
-		List<Supermercado> lista = this.supermercadoRepository.findByUsuarioContainingIgnoreCase(usuario);
+	public List<Supermercado> findByUsuarioUsuarioContainingIgnoreCase(String usuario){
+		List<Supermercado> lista = this.supermercadoRepository.findByUsuarioUsuarioContainingIgnoreCase(usuario);
 		return lista;
 	}
 
