@@ -39,4 +39,8 @@ public class CompradorService {
 		this.compradorRepository.save(comprador);
 		return "Comprador atualizado";
 	}
+	
+	 public List<Comprador> findByNomeContaining(String nome) {
+	        return compradorRepository.findByNomeContainingIgnoreCase(nome);
+	    }
 }

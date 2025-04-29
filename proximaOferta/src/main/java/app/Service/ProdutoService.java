@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import app.Entity.Comprador;
 import app.Entity.Produto;
 import app.Repository.ProdutoRepository;
 
@@ -43,4 +44,8 @@ public class ProdutoService {
 		this.produtoRepository.save(produto);
 		return "Produto atualizado";
 	}
+	
+	 public List<Produto> findByNomeContaining(String nome) {
+	        return produtoRepository.findByNomeContainingIgnoreCase(nome);
+	    }
 }

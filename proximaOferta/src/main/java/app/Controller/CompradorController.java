@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Comprador;
@@ -43,6 +44,14 @@ public class CompradorController {
 			Comprador comprador = this.compradorService.findById(id);
 			return new ResponseEntity<>(comprador, HttpStatus.BAD_REQUEST);
 	}
+	
+	@GetMapping("/findByNomeContaining")
+	public ResponseEntity<List<Comprador>> findByNomeContaining(@RequestParam String nome) {
+	    List<Comprador> compradores = compradorService.findByNomeContaining(nome);
+	    return new ResponseEntity<>(compradores, HttpStatus.OK);
+	}
+
+	
 	
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Comprador>> findAll(){

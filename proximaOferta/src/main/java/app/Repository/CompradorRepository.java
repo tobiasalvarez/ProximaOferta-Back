@@ -14,5 +14,7 @@ public interface CompradorRepository extends JpaRepository<Comprador, Long>{
 	List<Comprador> findByGenero(Sexo genero);
 	
 	List<Comprador> findByRuaContainingIgnoreCase(String rua);
+	
+	List<Comprador> findByNomeContainingIgnoreCase(String nome);
 
 }
