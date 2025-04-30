@@ -27,9 +27,9 @@ public class SupermercadoController {
 	private SupermercadoService supermercadoService;
 	
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody Supermercado supermercado){
-			String message = this.supermercadoService.save(supermercado);
-			return new ResponseEntity<>(message, HttpStatus.CREATED);
+	public ResponseEntity<Supermercado> save(@RequestBody Supermercado supermercado){
+			 this.supermercadoService.save(supermercado);
+			return new ResponseEntity<>(supermercado, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/deleteById/{id}")
@@ -51,9 +51,9 @@ public class SupermercadoController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody Supermercado supermercado,@PathVariable long id){
-			String message = this.supermercadoService.update(supermercado, id);
-			return new ResponseEntity<>(message, HttpStatus.OK);
+	public ResponseEntity<Supermercado> update(@RequestBody Supermercado supermercado,@PathVariable long id){
+			this.supermercadoService.update(supermercado, id);
+			return new ResponseEntity<>(supermercado, HttpStatus.OK);
 	}
 	
 	@GetMapping("/findByEmailContainingIgnoreCase")

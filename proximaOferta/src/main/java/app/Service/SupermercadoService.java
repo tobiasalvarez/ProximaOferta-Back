@@ -14,9 +14,9 @@ public class SupermercadoService {
 	@Autowired
 	private SupermercadoRepository supermercadoRepository;
 	
-	public String save(Supermercado supermercado) {
+	public Supermercado save(Supermercado supermercado) {
 		this.supermercadoRepository.save(supermercado);
-		return "Comprador Criado!!";
+		return supermercado;
 	}
 	
 	
@@ -35,10 +35,10 @@ public class SupermercadoService {
 		return list;
 	}
 	
-	public String update(Supermercado supermercado, long id) {
+	public Supermercado update(Supermercado supermercado, long id) {
 		supermercado.setId(id);
 		this.supermercadoRepository.save(supermercado);
-		return "Supermercado Atualizado!";
+		return supermercado;
 	}
 	
 	public List<Supermercado> findByEmailContainingIgnoreCase(String email){
