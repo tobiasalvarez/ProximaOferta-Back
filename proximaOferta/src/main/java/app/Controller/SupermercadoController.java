@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import app.Entity.Supermercado;
 import app.Service.SupermercadoService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/api/supermercado")
@@ -67,7 +66,7 @@ public class SupermercadoController {
 	}
 	
 	@GetMapping("/findByUsuarioUsuarioContainingIgnoreCase")
-	public ResponseEntity<List<Supermercado>> findByUsuarioUsuarioContainingIgnoreCase(@RequestParam String usuario){
+	public ResponseEntity<List<Supermercado>> findByUsuarioUsuarioContainingIgnoreCase(@RequestParam  String usuario){
 		List<Supermercado> lista = this.supermercadoService.findByUsuarioUsuarioContainingIgnoreCase(usuario);
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
