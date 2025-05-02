@@ -6,37 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.Entity.Usuario;
-import app.Repository.UsuarioRepositoy;
+import app.Repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
 	@Autowired
-	private UsuarioRepositoy usuarioRepositoy;
+	private UsuarioRepository usuarioRepository;
 	
 	public String save(Usuario usuario) {
-		this.usuarioRepositoy.save(usuario);
+		this.usuarioRepository.save(usuario);
 		return "Usuario Criado!!";
 	}
 	
 	public String deleteById(long id) {
-		this.usuarioRepositoy.deleteById(id);
+		this.usuarioRepository.deleteById(id);
 		return "Usuario Deletado!";
 	}
 	
 	public Usuario findById(long id) {
-		Usuario usuario = this.usuarioRepositoy.findById(id).get();
+		Usuario usuario = this.usuarioRepository.findById(id).get();
 		return usuario;
 	}
 	
 	public List<Usuario> findAll() {
-		List<Usuario> list = this.usuarioRepositoy.findAll();
+		List<Usuario> list = this.usuarioRepository.findAll();
 		return list;
 	}
 	
-	public String update(Usuario usuario, long id) {
+	public Usuario update(Usuario usuario, long id) {
 		usuario.setId(id);
-		this.usuarioRepositoy.save(usuario);
-		return "Usuario Atualizado!!";
+		this.usuarioRepository.save(usuario);
+		return usuario;
 	}
 }

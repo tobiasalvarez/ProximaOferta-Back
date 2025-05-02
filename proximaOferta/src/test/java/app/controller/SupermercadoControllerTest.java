@@ -10,22 +10,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import app.Controller.SupermercadoController;
 import app.Entity.Supermercado;
+import app.Entity.Usuario;
 import app.Repository.SupermercadoRepository;
-import app.Service.SupermercadoService;
 import jakarta.validation.ConstraintViolationException;
 
 @SpringBootTest
@@ -48,9 +44,19 @@ public class SupermercadoControllerTest {
 		supermercado1.setRua("bbb");
 		
 		
+		Usuario usuario = new Usuario();
+		usuario.setId(1);
+		usuario.setUsuario("aaa");
+		usuario.setSenha("AAAAAAAA");
+		supermercado1.setUsuario(usuario);
+		
+		
+		
 		List<Supermercado> list = new ArrayList<>();
 		list.add(supermercado1);
 		
+		
+		when(supermercadoRepository.findByUsuarioUsuarioContainingIgnoreCase("a")).thenReturn(list);
 		doNothing().when(supermercadoRepository).deleteById(1L);
 		when(supermercadoRepository.findAll()).thenReturn(list);
 		when(supermercadoRepository.findById(1L)).thenReturn(Optional.of(supermercado1));
@@ -61,6 +67,7 @@ public class SupermercadoControllerTest {
 	
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void testeCreate() {
 		Supermercado supermercado2 = new Supermercado();
 		supermercado2.setId(2);
@@ -75,6 +82,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void testeCreateBad() {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(1);
@@ -88,6 +96,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void testeFindById() {
 		
 		
@@ -97,6 +106,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void cenario() {
 		
 		ResponseEntity<Supermercado> retorno = this.supermercadoController.findById(1L);
@@ -105,6 +115,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void findAll() {
 		
 		ResponseEntity<List<Supermercado>> retorno = this.supermercadoController.findAll();
@@ -114,6 +125,7 @@ public class SupermercadoControllerTest {
 	
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void cenario02() {
 		
 		ResponseEntity<List<Supermercado>> retorno = this.supermercadoController.findByEmailContainingIgnoreCase("bc");
@@ -122,6 +134,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void cenario03() {
 		ResponseEntity<String> retorno = this.supermercadoController.deleteById(1L);
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
@@ -129,6 +142,7 @@ public class SupermercadoControllerTest {
 	}
 	
 	@Test
+	@DisplayName("Teste de Integracao com Mockito")
 	void cenario04() {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(1);
@@ -141,9 +155,18 @@ public class SupermercadoControllerTest {
 	
 	
 	@Test
+	@DisplayName("cenario05 Teste de Integracao com Mockito")
 	void cenario05() {
 		
+		ResponseEntity<List<Supermercado>> retorno = this.supermercadoController.findByUsuarioUsuarioContainingIgnoreCase("a");
+		assertEquals("aaa", retorno.getBody().get(0).getUsuario().getUsuario());
+		
+		
 	}
+	
+	
+	
+
 	
 	
 
