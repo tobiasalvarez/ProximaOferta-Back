@@ -22,6 +22,8 @@ public class SupermercadoServiceTest {
 	@Mock
 	SupermercadoRepository supermercadoRepository;
 	
+	
+	
 	@Test
 	@DisplayName("Teste Unitario com Mockito")
 	void testCreate() {
@@ -41,8 +43,7 @@ public class SupermercadoServiceTest {
 		assertEquals("abc@gmail.com", retorno.getEmail());
 		assertEquals("aaaaaa", retorno.getRua());
 		
-		
-		
+	
 	}
 
 }

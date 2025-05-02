@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,17 +18,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Supermercado;
 import app.Service.SupermercadoService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/api/supermercado")
 @CrossOrigin("*")
+@Validated
 public class SupermercadoController {
 
 	@Autowired
 	private SupermercadoService supermercadoService;
 	
 	@PostMapping("/save")
-	public ResponseEntity<Supermercado> save(@RequestBody Supermercado supermercado){
+	public ResponseEntity<Supermercado> save(@Valid @RequestBody Supermercado supermercado){
 			 this.supermercadoService.save(supermercado);
 			return new ResponseEntity<>(supermercado, HttpStatus.CREATED);
 	}
@@ -51,7 +55,7 @@ public class SupermercadoController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<Supermercado> update(@RequestBody Supermercado supermercado,@PathVariable long id){
+	public ResponseEntity<Supermercado> update(@Valid @RequestBody Supermercado supermercado,@PathVariable long id){
 			this.supermercadoService.update(supermercado, id);
 			return new ResponseEntity<>(supermercado, HttpStatus.OK);
 	}
