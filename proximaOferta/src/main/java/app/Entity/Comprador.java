@@ -45,6 +45,8 @@ public class Comprador {
 	@JoinColumn(name = "comanda_id")
 	@JsonIgnoreProperties("comprador")
 	private Comanda comanda;
+
+
 	
 
 }

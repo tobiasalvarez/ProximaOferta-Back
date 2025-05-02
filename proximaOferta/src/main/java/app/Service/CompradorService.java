@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.Entity.Comprador;
+import app.Entity.Supermercado;
 import app.Repository.CompradorRepository;
 
 @Service
@@ -14,9 +15,9 @@ public class CompradorService {
 	@Autowired
 	private CompradorRepository compradorRepository;
 	
-	public String save(Comprador comprador) {
+	public Comprador save(Comprador comprador) {
 		this.compradorRepository.save(comprador);
-		return "Comprador Criado!!";
+		return comprador;
 	}
 	
 	public String deleteById(long id) {

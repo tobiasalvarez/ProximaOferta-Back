@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import app.Entity.Comprador;
 import app.Entity.Produto;
+import app.Entity.Supermercado;
 import app.Repository.ProdutoRepository;
 
 @Service
@@ -15,15 +15,23 @@ public class ProdutoService {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
-	public String save(Produto produto) {
-		if (produto.getSupermercado() == null) {
-			throw new RuntimeException("Nao e possivel cadastrar um produto sem um supermercado associado.");
+	
+	
+	public Produto save(Produto produto) {
+		this.produtoRepository.save(produto);
+		return produto;
+	}
+			
+			
+/*			throw new RuntimeException("Nao e possivel cadastrar um produto sem um supermercado associado.");
 		} else {
 			this.produtoRepository.save(produto);
 			return "Produto Criado!!";
 		}
+}
 	}
-	
+	*/
+			
 	public String deleteById(long id) {
 		this.produtoRepository.deleteById(id);
 		return "Produto deletado!";

@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Comprador;
 import app.Entity.Produto;
+import app.Entity.Supermercado;
 import app.Repository.ProdutoRepository;
 import app.Service.ProdutoService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/produto")
@@ -31,11 +33,10 @@ public class ProdutoController {
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody Produto produto){
-			String message = this.produtoService.save(produto);
-			return new ResponseEntity<>(message, HttpStatus.CREATED);
+	public ResponseEntity<Produto> save(@Valid @RequestBody Produto produto){
+			 this.produtoService.save(produto);
+			return new ResponseEntity<>(produto, HttpStatus.CREATED);
 	}
-	
 	@DeleteMapping("/deleById/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable long id){
 			String message = this.produtoService.deleteById(id);
@@ -64,11 +65,10 @@ public class ProdutoController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody Produto produto,@PathVariable long id){
-			String message = this.produtoService.update(produto, id);
-			return new ResponseEntity<>(message, HttpStatus.OK);
+	public ResponseEntity<Produto> update(@Valid @RequestBody Produto produto,@PathVariable long id){
+			this.produtoService.update(produto, id);
+			return new ResponseEntity<>(produto, HttpStatus.OK);
 	}
-	
 	@GetMapping("/findByNomeContaining")
 	public ResponseEntity<List<Produto>> findByNomeContaining(@RequestParam String nome) {
 	    List<Produto> produtos = produtoService.findByNomeContaining(nome);
