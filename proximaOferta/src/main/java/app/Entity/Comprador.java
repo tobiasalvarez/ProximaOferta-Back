@@ -41,10 +41,12 @@ public class Comprador {
 	@JsonIgnoreProperties("compradores")
 	private Sexo genero;
 	
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name = "comanda_id")
 	@JsonIgnoreProperties("comprador")
 	private Comanda comanda;
+*/
+
 	
 
 }

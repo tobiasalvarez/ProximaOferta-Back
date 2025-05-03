@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.Entity.Comprador;
+import app.Entity.Supermercado;
 import app.Service.CompradorService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/comprador")
@@ -27,10 +29,9 @@ public class CompradorController {
 	private CompradorService compradorService;
 	
 	@PostMapping("/save")
-	public ResponseEntity<String> save(@RequestBody Comprador comprador){
-			String message = this.compradorService.save(comprador);
-			return new ResponseEntity<>(message, HttpStatus.CREATED);
-		
+	public ResponseEntity<Comprador> save(@Valid @RequestBody Comprador comprador){
+			 this.compradorService.save(comprador);
+			return new ResponseEntity<>(comprador, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/deleById/{id}")
@@ -60,9 +61,9 @@ public class CompradorController {
 	}
 	
 	@PostMapping("/update/{id}")
-	public ResponseEntity<String> update(@RequestBody Comprador comprador,@PathVariable long id){
-			String message = this.compradorService.update(comprador, id);
-			return new ResponseEntity<>(message, HttpStatus.OK);
+	public ResponseEntity<Comprador> update(@Valid @RequestBody Comprador comprador,@PathVariable long id){
+			this.compradorService.update(comprador, id);
+			return new ResponseEntity<>(comprador, HttpStatus.OK);
 	}
-
+	
 }
