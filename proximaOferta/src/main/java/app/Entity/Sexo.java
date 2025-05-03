@@ -34,4 +34,9 @@ public class Sexo {
 	@OneToOne
 	@JsonIgnoreProperties("genero")
 	private Comprador comprador;
+
+	public void setTipo(String string) {
+		// TODO Auto-generated method stub
+		
+	}
 }
