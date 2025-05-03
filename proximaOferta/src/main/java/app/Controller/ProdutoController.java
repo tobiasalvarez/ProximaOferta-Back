@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/produto")
 @CrossOrigin("*")
+@Validated
 public class ProdutoController {
 
     @Autowired
@@ -55,23 +57,15 @@ public class ProdutoController {
 			return new ResponseEntity<>(list,  HttpStatus.OK);
 	}
 	
-	@GetMapping("/produtos") // Para a busca por nome
-	public List<Produto> listarProdutos(@RequestParam(required = false) String nome) {
-	    if (nome != null) {
-	        return produtoRepository.findByNomeContainingIgnoreCase(nome);
-	    } else {
-	        return produtoRepository.findAll();
-	    }
-	}
 	
 	@PostMapping("/update/{id}")
 	public ResponseEntity<Produto> update(@Valid @RequestBody Produto produto,@PathVariable long id){
 			this.produtoService.update(produto, id);
 			return new ResponseEntity<>(produto, HttpStatus.OK);
 	}
-	@GetMapping("/findByNomeContaining")
-	public ResponseEntity<List<Produto>> findByNomeContaining(@RequestParam String nome) {
-	    List<Produto> produtos = produtoService.findByNomeContaining(nome);
+	@GetMapping("/findByNomeContainingIgnoreCase")
+	public ResponseEntity<List<Produto>> findByNomeContainingIgnoreCase(@RequestParam String nome) {
+	    List<Produto> produtos = produtoService.findByNomeContainingIgnoreCase(nome);
 	    return new ResponseEntity<>(produtos, HttpStatus.OK);
 	}
 
