@@ -53,7 +53,7 @@ public class ProdutoService {
 		return "Produto atualizado";
 	}
 	
-	 public List<Produto> findByNomeContaining(String nome) {
+	 public List<Produto> findByNomeContainingIgnoreCase(String nome) {
 	        return produtoRepository.findByNomeContainingIgnoreCase(nome);
 	    }
 }

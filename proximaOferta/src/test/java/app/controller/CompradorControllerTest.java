@@ -20,7 +20,6 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import app.Controller.CompradorController;
 import app.Entity.Comprador;
-import app.Entity.Supermercado;
 import app.Entity.Usuario;
 import app.Repository.CompradorRepository;
 import jakarta.validation.ConstraintViolationException;
@@ -68,7 +67,7 @@ public class CompradorControllerTest {
 	
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("01 Teste de Integracao com Mockito")
 	void testeCreate() {
 		Comprador comprador1 = new Comprador();
 		comprador1.setId(1);
@@ -83,23 +82,24 @@ public class CompradorControllerTest {
 		assertEquals(HttpStatus.CREATED, retorno.getStatusCode());
 	}
 	
-	/*@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@Test
+	@DisplayName("02 Teste de Integracao com Mockito")
 	void testeCreateBad() {
 		Comprador comprador = new Comprador();
 		comprador.setId(1);
 		comprador.setRua("aa");
-		comprador.setNome("AAAA");
+		comprador.setNome(null);
 		comprador.setBairro("bbb");
 		comprador.setIdade(5);
+		
 		
 		assertThrows(ConstraintViolationException.class, () -> {
 	        compradorController.save(comprador);
 	    });
-	}*/
+	}
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("03 Teste de Integracao com Mockito")
 	void testeFindById() {
 		
 		
@@ -108,36 +108,36 @@ public class CompradorControllerTest {
 		
 	}
 	
-	/*@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@Test
+	@DisplayName("04 Teste de Integracao com Mockito")
 	void cenario() {
 		
-		ResponseEntity<Comprador> retorno = this.compradorController.findById(1L);
+		ResponseEntity<Comprador> retorno = this.compradorController.findById(1);
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
 		
-	}*/
+	}
 	
-	/*@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@Test
+	@DisplayName("05 Teste de Integracao com Mockito")
 	void findAll() {
 		
 		ResponseEntity<List<Comprador>> retorno = this.compradorController.findAll();
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
 		
-	}*/
+	}
 	
 	
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("06 Teste de Integracao com Mockito")
 	void cenario02() {
 		ResponseEntity<String> retorno = this.compradorController.deleteById(1L);
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
 		
 	}
 	
-	/*@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@Test
+	@DisplayName("07 Teste de Integracao com Mockito")
 	void cenario03() {
 		Comprador comprador1 = new Comprador();
 		comprador1.setId(1);
@@ -145,20 +145,23 @@ public class CompradorControllerTest {
 		comprador1.setNome("AAAA");
 		comprador1.setBairro("bbb");
 		comprador1.setIdade(5);
-		;
 		ResponseEntity<Comprador> retorno = this.compradorController.update(comprador1, 0);
-		assertEquals("aaa", retorno.getBody().getNome());
-	}*/
+		assertEquals("AAAA", retorno.getBody().getNome());
+	}
 
 	
-	/*@Test
-	@DisplayName("cenario05 Teste de Integracao com Mockito")
+	@Test
+	@DisplayName("08 Teste de Integracao com Mockito")
 	void cenario05() {
 		
-		ResponseEntity<List<Comprador>> retorno = this.compradorController.findByNomeContaining("aa");
-		assertEquals("aaa", retorno.getBody().get(0).getNome());
-		*/
+		ResponseEntity<List<Comprador>> retorno = this.compradorController.findByNomeContaining("a");
+		assertEquals("AAAA", retorno.getBody().get(0).getNome());
+		}
 		
+	
+	
+	
+	
 	}
 	
 	
