@@ -33,11 +33,11 @@ public class LoginService {
 	public String gerarToken(Login login) {
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
-						login.getUsername(),
-						login.getPassword()
+						login.getUsuario(),
+						login.getSenha()
 						)
 				);
-		Usuario user = repository.findByUsername(login.getUsername()).get();
+		Usuario user = repository.findByUsuario(login.getUsuario()).get();
 		String jwtToken = jwtService.generateToken(user);
 		return jwtToken;
 	}
