@@ -19,6 +19,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import jakarta.annotation.security.PermitAll;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig  {
@@ -32,7 +34,13 @@ public class SecurityConfig  {
 		.cors(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/login").permitAll()
-				.requestMatchers("/api/register").permitAll()
+				.requestMatchers("/api/produto/findAll").permitAll()
+				.requestMatchers("/api/produto/findById/{id}").permitAll()
+				.requestMatchers("/api/produto/findByNomeContainingIgnoreCase").permitAll()
+				.requestMatchers("/api/supermercado/findAll").permitAll()
+				.requestMatchers("/api/supermercado/findById/{id}").permitAll()
+				.requestMatchers("/api/produto/findByEmailContainingIgnoreCase").permitAll()
+				.requestMatchers("/api/produto/findByUsuarioUsuarioContainingIgnoreCase").permitAll()
 				.anyRequest().authenticated())
 		.authenticationProvider(authenticationProvider)
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)

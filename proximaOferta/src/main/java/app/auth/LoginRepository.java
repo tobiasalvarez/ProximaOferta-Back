@@ -9,6 +9,6 @@ import app.Entity.Usuario;
 
 public interface LoginRepository extends JpaRepository<Usuario, Long>{
 
-	public Optional<Usuario> findByUsername(String login);
+	public Optional<Usuario> findByUsuario(String login);
 	
 }
