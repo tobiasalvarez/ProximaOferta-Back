@@ -66,7 +66,7 @@ public class CompradorControllerTest {
 	
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("01 Teste de Integracao com Mockito")
 	void testeCreate() {
 		Comprador comprador1 = new Comprador();
 		comprador1.setId(1L);
@@ -82,9 +82,25 @@ public class CompradorControllerTest {
 	}
 	
 
+	@Test
+	@DisplayName("02 Teste de Integracao com Mockito")
+	void testeCreateBad() {
+		Comprador comprador = new Comprador();
+		comprador.setId(1);
+		comprador.setRua("aa");
+		comprador.setNome(null);
+		comprador.setBairro("bbb");
+		comprador.setIdade(5);
+		
+		
+		/*assertThrows(ConstraintViolationException.class, () -> {
+	        compradorController.save(comprador);
+	    });*/
+	}
+
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("03 Teste de Integracao com Mockito")
 	void testeFindById() {
 		
 		
@@ -95,7 +111,17 @@ public class CompradorControllerTest {
 	
 
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("04 Teste de Integracao com Mockito")
+	void cenario() {
+		
+		ResponseEntity<Comprador> retorno = this.compradorController.findById(1);
+		assertEquals(HttpStatus.OK, retorno.getStatusCode());
+		
+	}
+	
+	@Test
+	@DisplayName("05 Teste de Integracao com Mockito")
+
 	void findAll() {
 		
 		ResponseEntity<List<Comprador>> retorno = this.compradorController.findAll();
@@ -106,7 +132,7 @@ public class CompradorControllerTest {
 	
 	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("06 Teste de Integracao com Mockito")
 	void cenario02() {
 		ResponseEntity<String> retorno = this.compradorController.deleteById(1L);
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
@@ -114,6 +140,7 @@ public class CompradorControllerTest {
 	}
 	
 	@Test
+
 	@DisplayName("Deve deletar um comprador com sucesso")
 	void testeDeleteById() {
 	    doNothing().when(compradorRepository).deleteById(1L);
@@ -160,7 +187,28 @@ public class CompradorControllerTest {
 	    assertEquals("Rua Nova", resposta.getBody().getRua());
 	}
 
+
+	@DisplayName("07 Teste de Integracao com Mockito")
+	void cenario03() {
+		Comprador comprador1 = new Comprador();
+		comprador1.setId(1);
+		comprador1.setRua("aa");
+		comprador1.setNome("AAAA");
+		comprador1.setBairro("bbb");
+		comprador1.setIdade(5);
+		ResponseEntity<Comprador> retorno = this.compradorController.update(comprador1, 0);
+		assertEquals("AAAA", retorno.getBody().getNome());
+	}
+
 	
+	@Test
+	@DisplayName("08 Teste de Integracao com Mockito")
+	void cenario05() {
+		
+		ResponseEntity<List<Comprador>> retorno = this.compradorController.findByNomeContaining("a");
+		assertEquals("AAAA", retorno.getBody().get(0).getNome());
+		}
+
 	
 	}
 	

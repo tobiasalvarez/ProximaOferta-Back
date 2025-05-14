@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,30 +29,35 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/save")
 	public ResponseEntity<String> save(@RequestBody @Valid Usuario usuario){
 			String message = this.usuarioService.save(usuario);
 			return new ResponseEntity<>(message, HttpStatus.CREATED);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/deleteById/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable long id){
 			String message = this.usuarioService.deleteById(id);
 			return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/findById/{id}")
 	public ResponseEntity<Usuario> findById(@PathVariable long id){
 			Usuario usuario = this.usuarioService.findById(id);
 			return new ResponseEntity<>(usuario, HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/findAll")
 	public ResponseEntity<List<Usuario>> findAll(){
 			List<Usuario> list = this.usuarioService.findAll();
 			return new ResponseEntity<>(list,  HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@PostMapping("/update/{id}")
 	public ResponseEntity<Usuario> update(@RequestBody @Valid Usuario usuario,@PathVariable long id){
 			Usuario user = this.usuarioService.update(usuario, id);

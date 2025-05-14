@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -49,12 +50,11 @@ public class ProdutoControllerTest {
 		list.add(produto1);
 		
 		
-		when(produtoRepository.findByNomeContainingIgnoreCase("a")).thenReturn(list);
 		doNothing().when(produtoRepository).deleteById(1L);
 		when(produtoRepository.findAll()).thenReturn(list);
 		when(produtoRepository.findById(1L)).thenReturn(Optional.of(produto1));
 		when(produtoRepository.findAll()).thenReturn(list);
-		when(produtoRepository.findByNomeContainingIgnoreCase("bc")).thenReturn(list);
+		when(produtoRepository.findByNomeContainingIgnoreCase("a")).thenReturn(list);
 		
 	}
 	
@@ -129,6 +129,7 @@ public class ProdutoControllerTest {
 	}
 	
 	
+
 	@Test
 	@DisplayName("Teste de Integracao com Mockito")
 	void testeFindById() {
@@ -139,5 +140,25 @@ public class ProdutoControllerTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Deve lançar NoSuchElementException ao buscar produto inexistente")
+	void findById_inexistente() {
+	    when(produtoRepository.findById(999L)).thenReturn(Optional.empty());
+
+	    NoSuchElementException retorno = assertThrows(
+	        NoSuchElementException.class,
+	        () -> produtoController.findById(999L)
+	    );
+
+	    assertEquals("No value present", retorno.getMessage());
+	}
+	
+	@Test
+	@DisplayName("01 Teste de Integracao com Mockito")
+	void cenario01() {
+		ResponseEntity<List<Produto>> retorno = this.produtoController.findByNomeContainingIgnoreCase("a");
+		assertEquals("aa", retorno.getBody().get(0).getNome());
+		
+	}
  
 }
