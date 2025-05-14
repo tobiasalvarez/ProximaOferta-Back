@@ -38,7 +38,9 @@ public class ProdutoControllerTest {
 	
 	@BeforeEach
 	void setup() {
+		
 		Produto produto1 = new Produto();
+	    produto1.setId(1L);
 		produto1.setNome("aa");
 		produto1.setValidade("aa");
 		produto1.setPrecoAtual(2);
@@ -125,18 +127,18 @@ public class ProdutoControllerTest {
 	        produtoController.save(produtoInvalido);
 	    });
 	}
-
 	
-	/*@Test
-	@DisplayName("Deve retornar NOT_FOUND ao buscar produto inexistente")
-	void findById_inexistente() {
-	    // Simula que o produto com ID 999 não existe
-	    when(produtoRepository.findById(999L)).thenReturn(Optional.empty());
+	
 
-	    ResponseEntity<Produto> resposta = produtoController.findById(999L);
-
-	    assertEquals(HttpStatus.NOT_FOUND, resposta.getStatusCode());
-	}*/
+	@Test
+	@DisplayName("Teste de Integracao com Mockito")
+	void testeFindById() {
+		
+		
+		ResponseEntity<Produto> retorno = this.produtoController.findById(1);
+		assertEquals(1, retorno.getBody().getId());
+		
+	}
 	
 	@Test
 	@DisplayName("Deve lançar NoSuchElementException ao buscar produto inexistente")
@@ -158,8 +160,5 @@ public class ProdutoControllerTest {
 		assertEquals("aa", retorno.getBody().get(0).getNome());
 		
 	}
-
-
-	
  
 }

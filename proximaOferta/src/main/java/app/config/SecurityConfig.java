@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -19,10 +20,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import jakarta.annotation.security.PermitAll;
-
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig  {
 
 	///////////////////////////////////////////////////////
@@ -34,13 +34,6 @@ public class SecurityConfig  {
 		.cors(AbstractHttpConfigurer::disable)
 		.authorizeHttpRequests((requests) -> requests
 				.requestMatchers("/api/login").permitAll()
-				.requestMatchers("/api/produto/findAll").permitAll()
-				.requestMatchers("/api/produto/findById/{id}").permitAll()
-				.requestMatchers("/api/produto/findByNomeContainingIgnoreCase").permitAll()
-				.requestMatchers("/api/supermercado/findAll").permitAll()
-				.requestMatchers("/api/supermercado/findById/{id}").permitAll()
-				.requestMatchers("/api/produto/findByEmailContainingIgnoreCase").permitAll()
-				.requestMatchers("/api/produto/findByUsuarioUsuarioContainingIgnoreCase").permitAll()
 				.anyRequest().authenticated())
 		.authenticationProvider(authenticationProvider)
 		.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
@@ -49,7 +42,6 @@ public class SecurityConfig  {
 		return http.build();
 	}
 
-	///////////////////////////////////////////////////////
 
 
 	@Autowired
@@ -75,6 +67,7 @@ public class SecurityConfig  {
 	}
 	
 	
-
-
+	
 }
+
+
