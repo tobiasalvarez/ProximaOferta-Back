@@ -16,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import app.Controller.UsuarioController;
@@ -35,6 +38,12 @@ public class UsuarioControllerTest {
 	
 	@BeforeEach
 	void setup() {
+		var auth = new UsernamePasswordAuthenticationToken(
+		        "ADMIN",
+		        null,
+		        List.of(new SimpleGrantedAuthority("ADMIN"))
+		    );
+		SecurityContextHolder.getContext().setAuthentication(auth);
 		Usuario usuario = new Usuario();
 		usuario.setId(1);
 		usuario.setUsuario("aaa");
