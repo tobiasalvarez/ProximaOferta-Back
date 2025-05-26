@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import app.Controller.ProdutoController;
@@ -38,7 +41,12 @@ public class ProdutoControllerTest {
 	
 	@BeforeEach
 	void setup() {
-		
+		var auth = new UsernamePasswordAuthenticationToken(
+		        "ADMIN",
+		        null,
+		        List.of(new SimpleGrantedAuthority("ADMIN"))
+		    );
+		SecurityContextHolder.getContext().setAuthentication(auth);
 		Produto produto1 = new Produto();
 	    produto1.setId(1L);
 		produto1.setNome("aa");
@@ -94,12 +102,12 @@ public class ProdutoControllerTest {
 	
 	
 	
+	
 	@Test
-	@DisplayName("Teste de Integracao com Mockito")
+	@DisplayName("03 Teste de Integracao com Mockito")
 	void cenario03() {
 		ResponseEntity<String> retorno = this.produtoController.deleteById(1L);
 		assertEquals(HttpStatus.OK, retorno.getStatusCode());
-		
 	}
 	
 	@Test
