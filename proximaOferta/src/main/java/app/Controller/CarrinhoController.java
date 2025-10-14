@@ -11,6 +11,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/carrinho")
+@CrossOrigin("*")
 public class CarrinhoController {
 
     @Autowired
