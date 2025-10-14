@@ -41,6 +41,8 @@ public class CarrinhoController {
     public ResponseEntity<?> visualizarCarrinho() {
         return ResponseEntity.ok(carrinhoService.getCarrinhoAtivo());
     }
+    
+    
 
     /*@PostMapping("/finalizar")
     public ResponseEntity<?> finalizarCarrinho() {

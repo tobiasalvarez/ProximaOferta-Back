@@ -3,8 +3,11 @@ package app.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import app.Entity.Supermercado;
 import app.Entity.Usuario;
 import app.Repository.UsuarioRepository;
 
@@ -39,4 +42,10 @@ public class UsuarioService {
 		this.usuarioRepository.save(usuario);
 		return usuario;
 	}
+	
+	public Page<Usuario> findAll(int numPaginaAtual){
+		 int totalPorPagina = 2;
+		 PageRequest pageRequest = PageRequest.of(numPaginaAtual-1, totalPorPagina);
+		 return this.usuarioRepository.findAll(pageRequest);
+	 }
 }
