@@ -67,10 +67,10 @@ public class CompradorController {
 			this.compradorService.update(comprador, id);
 			return new ResponseEntity<>(comprador, HttpStatus.OK);
 	}
-	
+	/*
 	@GetMapping("/findAll/{numPaginaAtual}") public ResponseEntity<Page<Comprador>> findAll(@PathVariable("numPaginaAtual") int numPaginaAtual){
 		Page<Comprador> lista = this.compradorService.findAll(numPaginaAtual); 
 		 return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
-	
+	*/
 }
